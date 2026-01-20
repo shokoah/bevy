@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  ipsec:
+    build: ./ipsec
+    container_name: strongswan
+    network_mode: host
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - ./ipsec/ipsec.conf:/etc/ipsec.conf
+      - ./ipsec/ipsec.secrets:/etc/ipsec.secrets
+      - ./ipsec/strongswan.conf:/etc/strongswan.conf
+    restart: unless-stopped
+
+  strongman:
+    build: ./strongman
+    container_name: strongman
+    depends_on:
+      - ipsec
+    ports:
+      - "8080:80"
+    restart: unless-stopped
