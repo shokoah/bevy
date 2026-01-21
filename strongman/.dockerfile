@@ -13,9 +13,10 @@ RUN apk update && apk add --no-cache \
     bash
 
 # Install StrongMan
-RUN git clone https://github.com/strongman/strongman.git /var/www/strongman
+#RUN git clone https://github.com/strongman/strongman.git /var/www/strongman
 
 # Nginx config
+COPY strongman-src /var/www/strongman
 COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /run/nginx /var/log/php82

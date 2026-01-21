@@ -2,7 +2,6 @@ FROM alpine:3.19
 
 RUN apk update && apk add --no-cache \
     strongswan \
-    strongswan-swanctl \
     iproute2 \
     bash \
     curl
