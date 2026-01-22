@@ -19,8 +19,7 @@ services:
 
   strongman:
     build:
-      context: ./strongman
-      dockerfile: .dockerfile
+      context: ./strongMan
     container_name: strongman
     depends_on:
       - ipsec
